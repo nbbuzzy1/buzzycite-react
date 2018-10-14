@@ -35,30 +35,68 @@ export default class SupremePre extends React.Component {
   }
   handleCitation =() => {
     const partyOne = this.state.partyOne;
-    let splitNames = partyOne.trim().split(" ");
-    for (let i = 0; i < splitNames.length; i++) {
+    
+    let specialTermsOne = partyOne
+      .replace("also known as", "a.k.a.")
+      .replace("Also Known As", "a.k.a.")
+      .replace("attorney general", "Atty. Gen.")
+      .replace("Attorney General", "Atty. Gen.")
+      .replace("doing business as", "d.b.a.")
+      .replace("Doing Business As", "d.b.a.")
+      .replace("formerly known as", "f.k.a.")
+      .replace("Formerly Known As", "f.k.a.")
+      .replace("in the matter of", "In re")
+      .replace("In the Matter of", "In re")
+      .replace("now known as", "n.k.a.")
+      .replace("Now Known As", "n.k.a.")
+      .replace("prosecuting attorney", "Pros. Atty.")
+      .replace("Prosecuting Attorney", "Pros. Atty.")
+      .replace("savings & loan", "S. & L.")
+      .replace("Savings & Loan", "S. & L.")
+
+    let splitPartyOne = specialTermsOne.trim().split(" ");
+    for (let i = 0; i < splitPartyOne.length; i++) {
       for (let y = 0; y < term.length; y++) {
-        if (splitNames[i].toLowerCase() === term[y].fullTerm) {
-          splitNames[i] = term[y].abbTerm;
-        } else if (splitNames[i].toLowerCase() === term[y].pluralTerm) {
-          splitNames[i] = term[y].plTerm;
+        if (splitPartyOne[i].toLowerCase() === term[y].fullTerm) {
+          splitPartyOne[i] = term[y].abbTerm;
+        } else if (splitPartyOne[i].toLowerCase() === term[y].pluralTerm) {
+          splitPartyOne[i] = term[y].plTerm;
         }
       }
     }
-    let newPartyOne = splitNames.join(" ");
+    let newPartyOne = splitPartyOne.join(" ");
     
     const partyTwo = this.state.partyTwo;
-    let splitNamesTwo = partyTwo.trim().split(" ");
-    for (let i = 0; i < splitNamesTwo.length; i++) {
+
+    let specialCases = partyTwo
+      .replace("also known as", "a.k.a.")
+      .replace("Also Known As", "a.k.a.")
+      .replace("attorney general", "Atty. Gen.")
+      .replace("Attorney General", "Atty. Gen.")
+      .replace("doing business as", "d.b.a.")
+      .replace("Doing Business As", "d.b.a.")
+      .replace("formerly known as", "f.k.a.")
+      .replace("Formerly Known As", "f.k.a.")
+      .replace("in the matter of", "In re")
+      .replace("In the Matter of", "In re")
+      .replace("now known as", "n.k.a.")
+      .replace("Now Known As", "n.k.a.")
+      .replace("prosecuting attorney", "Pros. Atty.")
+      .replace("Prosecuting Attorney", "Pros. Atty.")
+      .replace("savings & loan", "S. & L.")
+      .replace("Savings & Loan", "S. & L.")
+
+    let splitPartyTwo = specialCases.trim().split(" ");
+    for (let i = 0; i < splitPartyTwo.length; i++) {
       for (let y = 0; y < term.length; y++) {
-        if (splitNamesTwo[i].toLowerCase() === term[y].fullTerm) {
-          splitNamesTwo[i] = term[y].abbTerm;
-        } else if (splitNamesTwo[i].toLowerCase() === term[y].pluralTerm) {
-          splitNamesTwo[i] = term[y].plTerm;
+        if (splitPartyTwo[i].toLowerCase() === term[y].fullTerm) {
+          splitPartyTwo[i] = term[y].abbTerm;
+        } else if (splitPartyTwo[i].toLowerCase() === term[y].pluralTerm) {
+          splitPartyTwo[i] = term[y].plTerm;
         }
       }
     }
-    let newPartyTwo = splitNamesTwo.join(" ");
+    let newPartyTwo = splitPartyTwo.join(" ");
 
     this.setState({
       parties: `${newPartyOne} v. ${newPartyTwo}`

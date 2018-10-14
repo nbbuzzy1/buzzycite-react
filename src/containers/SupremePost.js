@@ -7,7 +7,7 @@ import AddYear from '../components/AddYear';
 import AddWebcite from '../components/AddWebcite';
 import CiteCase from '../components/CiteCase.js';
 import RemoveCitation from '../components/RemoveCitation';
-import SaveCitation from '../components/SaveCitation';
+import CopyCitation from '../components/CopyCitation';
 
 export default class SupremePost extends React.Component {
   state = {
@@ -37,38 +37,78 @@ export default class SupremePost extends React.Component {
   }
   handleCitation =() => {
     const partyOne = this.state.partyOne;
-    let splitNames = partyOne.trim().split(" ");
-    for (let i = 0; i < splitNames.length; i++) {
+    
+    let specialTermsOne = partyOne
+      .replace("also known as", "a.k.a.")
+      .replace("Also Known As", "a.k.a.")
+      .replace("attorney general", "Atty. Gen.")
+      .replace("Attorney General", "Atty. Gen.")
+      .replace("doing business as", "d.b.a.")
+      .replace("Doing Business As", "d.b.a.")
+      .replace("formerly known as", "f.k.a.")
+      .replace("Formerly Known As", "f.k.a.")
+      .replace("in the matter of", "In re")
+      .replace("In the Matter of", "In re")
+      .replace("now known as", "n.k.a.")
+      .replace("Now Known As", "n.k.a.")
+      .replace("prosecuting attorney", "Pros. Atty.")
+      .replace("Prosecuting Attorney", "Pros. Atty.")
+      .replace("savings & loan", "S. & L.")
+      .replace("Savings & Loan", "S. & L.")
+
+    let splitPartyOne = specialTermsOne.trim().split(" ");
+    for (let i = 0; i < splitPartyOne.length; i++) {
       for (let y = 0; y < term.length; y++) {
-        if (splitNames[i].toLowerCase() === term[y].fullTerm) {
-          splitNames[i] = term[y].abbTerm;
-        } else if (splitNames[i].toLowerCase() === term[y].pluralTerm) {
-          splitNames[i] = term[y].plTerm;
+        if (splitPartyOne[i].toLowerCase() === term[y].fullTerm) {
+          splitPartyOne[i] = term[y].abbTerm;
+        } else if (splitPartyOne[i].toLowerCase() === term[y].pluralTerm) {
+          splitPartyOne[i] = term[y].plTerm;
         }
       }
     }
-    let newPartyOne = splitNames.join(" ");
+    let newPartyOne = splitPartyOne.join(" ");
     
     const partyTwo = this.state.partyTwo;
-    let splitNamesTwo = partyTwo.trim().split(" ");
-    for (let i = 0; i < splitNamesTwo.length; i++) {
+
+    let specialTermsTwo = partyTwo
+      .replace("also known as", "a.k.a.")
+      .replace("Also Known As", "a.k.a.")
+      .replace("attorney general", "Atty. Gen.")
+      .replace("Attorney General", "Atty. Gen.")
+      .replace("doing business as", "d.b.a.")
+      .replace("Doing Business As", "d.b.a.")
+      .replace("formerly known as", "f.k.a.")
+      .replace("Formerly Known As", "f.k.a.")
+      .replace("in the matter of", "In re")
+      .replace("In the Matter of", "In re")
+      .replace("now known as", "n.k.a.")
+      .replace("Now Known As", "n.k.a.")
+      .replace("prosecuting attorney", "Pros. Atty.")
+      .replace("Prosecuting Attorney", "Pros. Atty.")
+      .replace("savings & loan", "S. & L.")
+      .replace("Savings & Loan", "S. & L.")
+
+    let splitPartyTwo = specialTermsTwo.trim().split(" ");
+    for (let i = 0; i < splitPartyTwo.length; i++) {
       for (let y = 0; y < term.length; y++) {
-        if (splitNamesTwo[i].toLowerCase() === term[y].fullTerm) {
-          splitNamesTwo[i] = term[y].abbTerm;
-        } else if (splitNamesTwo[i].toLowerCase() === term[y].pluralTerm) {
-          splitNamesTwo[i] = term[y].plTerm;
+        if (splitPartyTwo[i].toLowerCase() === term[y].fullTerm) {
+          splitPartyTwo[i] = term[y].abbTerm;
+        } else if (splitPartyTwo[i].toLowerCase() === term[y].pluralTerm) {
+          splitPartyTwo[i] = term[y].plTerm;
         }
       }
     }
-    let newPartyTwo = splitNamesTwo.join(" ");
+    let newPartyTwo = splitPartyTwo.join(" ");
 
-    this.setState({
-      parties: `${newPartyOne} v. ${newPartyTwo}`
-    })
-
-    this.setState({
-      citation: `, ${this.state.ohioVolume} ${this.state.ohioReporter} ${this.state.ohioFirstPage}, ${this.state.year}-Ohio-${this.state.webcite}, ${this.state.regionalVolume} ${this.state.regionalReporter} ${this.state.regionalFirstPage}`
-    })
+    if (this.state.partyOne && this.state.partyTwo && this.state.ohioVolume && this.state.ohioVolume && this.state.ohioFirstPage && this.state.regionalVolume && this.state.regionalReporter && this.state.regionalFirstPage && this.state.webcite && this.state.year) {
+      this.setState({
+        parties: `${newPartyOne} v. ${newPartyTwo}`
+      })
+      this.setState({
+        citation: `, ${this.state.ohioVolume} ${this.state.ohioReporter} ${this.state.ohioFirstPage}, ${this.state.year}-Ohio-${this.state.webcite}, ${this.state.regionalVolume} ${this.state.regionalReporter} ${this.state.regionalFirstPage}`
+      //i.e. Smith v. Smith, 234 Ohio St.3d, 2012-Ohio-1234, 45 N.E.3d 77
+      })
+    }
   }
   handleOhioVolume = (e) => {
     this.setState({
@@ -111,19 +151,19 @@ export default class SupremePost extends React.Component {
     })
   }
   handleRemoveCitation = () => {
-    partyOne.value = "";
-    partyTwo.value = "";
-    ohioVolume.value = "";
     ohioReporter.value = "";
-    ohioFirstPage.value = "";
-    regionalVolume.value = "";
     regionalReporter.value = "";
-    regionalFirstPage.value = "";
-    webcite.value="";
-    year.value = "";
     this.setState({
       citation: "",
-      parties: ""
+      parties: "",
+      partyOne: "",
+      partyTwo: "",
+      ohioVolume: "",
+      ohioFirstPage: "",
+      regionalVolume: "",
+      regionalFirstPage: "",
+      webcite: "",
+      year: ""
     })
   }
   handleSaveCitation = () => {
@@ -132,41 +172,67 @@ export default class SupremePost extends React.Component {
       citationList: prevState.citationList.concat(citationName)
     }))
   }
+
+  startCopyCitation = (citationText) => {
+    let copyArea = document.getElementById('fullCitation')
+    copyArea.innerHTML = citationText
+    copyArea.focus()
+    document.execCommand("selectAll");
+    document.execCommand("copy");
+  }
+  handleCopyCitation = () => {
+    this.startCopyCitation(`<i>${this.state.parties}</i>${this.state.citation}`);
+  }
+  handleStartCitation = (e) => {
+    e.preventDefault();
+  }
   render() {
     return (
       <div>
         <h2>Ohio Supreme Court Post May 1, 2002</h2>
-        <AddParties 
-          handlePartyOne={this.handlePartyOne} 
-          handlePartyTwo={this.handlePartyTwo} 
-        />
-        <AddOhioVolume
-          handleOhioVolume={this.handleOhioVolume} 
-          handleOhioReporter={this.handleOhioReporter} 
-          handleOhioFirstPage={this.handleOhioFirstPage}
-        />
-        <AddRegionalVolume
-          handleRegionalVolume={this.handleRegionalVolume} 
-          handleRegionalReporter={this.handleRegionalReporter} 
-          handleRegionalFirstPage={this.handleRegionalFirstPage}
-        />
-        <AddWebcite
-          handleWebcite={this.handleWebcite}
-        />
-        <AddYear
-          handleYear={this.handleYear}
-        />
-        <CiteCase
-          handleCitation={this.handleCitation}
-          parties={this.state.parties}
-          citation={this.state.citation}
-        />
+        <form onSubmit={this.handleStartCitation}>
+          <AddParties 
+            handlePartyOne={this.handlePartyOne} 
+            partyOne={this.state.partyOne}
+            handlePartyTwo={this.handlePartyTwo} 
+            partyTwo={this.state.partyTwo}
+          />
+          <AddOhioVolume
+            handleOhioVolume={this.handleOhioVolume} 
+            ohioVolume={this.state.ohioVolume}
+            handleOhioReporter={this.handleOhioReporter} 
+            ohioReporter={this.state.ohioReporter}
+            handleOhioFirstPage={this.handleOhioFirstPage}
+            ohioFirstPage={this.state.ohioFirstPage}
+          />
+          <AddRegionalVolume
+            handleRegionalVolume={this.handleRegionalVolume} 
+            regionalVolume={this.state.regionalVolume}
+            handleRegionalReporter={this.handleRegionalReporter} 
+            regionalReporter={this.state.regionalReporter}
+            handleRegionalFirstPage={this.handleRegionalFirstPage}
+            regionalFirstPage={this.state.regionalFirstPage}
+          />
+          <AddWebcite
+            handleWebcite={this.handleWebcite}
+            webcite={this.state.webcite}
+          />
+          <AddYear
+            handleYear={this.handleYear}
+            year={this.state.year}
+          />
+          <CiteCase
+            handleCitation={this.handleCitation}
+            parties={this.state.parties}
+            citation={this.state.citation}
+          />
+        </form>
         <RemoveCitation
           handleRemoveCitation={this.handleRemoveCitation}
           citation={this.state.citation}
         />
-        <SaveCitation
-          handleSaveCitation={this.handleSaveCitation}
+        <CopyCitation
+          handleCopyCitation={this.handleCopyCitation}
           citation={this.state.citation}
         />
       </div>

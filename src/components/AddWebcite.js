@@ -3,7 +3,7 @@ import React from 'react';
 const AddWebcite = (props) => (
   <div>
     <div>
-      <input type="number" id="webcite" placeholder="Webcite" onChange={props.handleWebcite}/>
+      <input value={props.webcite} required type="number" id="webcite" placeholder="Webcite" onChange={props.handleWebcite}/>
     </div>
   </div>
 )

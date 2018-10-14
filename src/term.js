@@ -19,12 +19,6 @@ const term = [
     plTerm: 'Admrs.'
   },
   {
-    fullTerm: 'also known as',
-    pluralTerm: 'also known ass',
-    abbTerm: 'a.k.a.',
-    plTerm: 'a.k.a.'
-  },
-  {
     fullTerm: 'america',
     pluralTerm: 'americas',
     abbTerm: 'Am.',
@@ -53,12 +47,6 @@ const term = [
     pluralTerm: 'assurances',
     abbTerm: 'Assn.',
     plTerm: 'Assns.'
-  },
-  {
-    fullTerm: 'attorney general',
-    pluralTerm: 'attorney generals',
-    abbTerm: 'Atty. Gen.',
-    plTerm: 'Atty. Gens.'
   },
   {
     fullTerm: 'auditor',
@@ -283,12 +271,6 @@ const term = [
     plTerm: 'Divs.'
   },
   {
-    fullTerm: 'doing business as',
-    pluralTerm: 'doing business ass',
-    abbTerm: 'd.b.a.',
-    plTerm: 'd.b.a.'
-  },
-  {
     fullTerm: 'east',
     pluralTerm: 'easts',
     abbTerm: 'E.',
@@ -397,12 +379,6 @@ const term = [
     plTerm: 'fns.'
   },
   {
-    fullTerm: 'formerly known as',
-    pluralTerm: 'formerly known ass',
-    abbTerm: 'f.k.a.',
-    plTerm: 'f.k.a.'
-  },
-  {
     fullTerm: 'foundation',
     pluralTerm: 'foundations',
     abbTerm: 'Found.',
@@ -509,11 +485,6 @@ const term = [
     pluralTerm: 'insurances',
     abbTerm: 'Ins.',
     plTerm: 'Ins.'
-  },
-  {
-    fullTerm: 'in the matter of',
-    fullTerm: 'in the matter ofs',
-    abbTerm: 'In re',
   },
   {
     fullTerm: 'international',
@@ -634,12 +605,6 @@ const term = [
     plTerm: 'N.'
   },
   {
-    fullTerm: 'now known as',
-    pluralTerm: 'now known ass',
-    abbTerm: 'n.k.a.',
-    plTerm: 'n.k.a.'
-  },
-  {
     fullTerm: 'number',
     pluralTerm: 'numbers',
     abbTerm: 'No.',
@@ -662,12 +627,6 @@ const term = [
     pluralTerm: 'productions',
     abbTerm: 'Prod.',
     plTerm: 'Prods.'
-  },
-  {
-    fullTerm: 'prosecuting attorney',
-    pluralTerm: 'prosecuting attorneys',
-    abbTerm: 'Pros. Atty.',
-    plTerm: 'Pros Attys.'
   },
   {
     fullTerm: 'psychiatric',
@@ -734,12 +693,6 @@ const term = [
     pluralTerm: 'savings',
     abbTerm: 'Sav.',
     plTerm: 'Savs.'
-  },
-  {
-    fullTerm: 'savings & loan',
-    pluralTerm: 'savings & loans',
-    abbTerm: 'S. & L.',
-    plTerm: 'S. & L.'
   },
   {
     fullTerm:'secretary',
