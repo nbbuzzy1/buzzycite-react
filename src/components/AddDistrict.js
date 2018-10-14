@@ -3,7 +3,7 @@ import React from 'react';
 const AddDistrict = (props) => (
   <div>
     <div>
-      <select id="district" onChange={props.handleDistrict}>
+      <select required id="district" onChange={props.handleDistrict}>
         <option value="">District</option>
         <option value="1st">1st</option>
         <option value="2d">2d</option>

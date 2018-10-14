@@ -4,6 +4,7 @@ import AddParties from '../components/AddParties';
 import AddOhioVolume from '../components/AddOhioVolume';
 import AddRegionalVolume from '../components/AddRegionalVolume';
 import AddYear from '../components/AddYear';
+import AddPinpoint from '../components/AddPinpoint';
 import AddWebcite from '../components/AddWebcite';
 import CiteCase from '../components/CiteCase.js';
 import RemoveCitation from '../components/RemoveCitation';
@@ -12,8 +13,7 @@ import CopyCitation from '../components/CopyCitation';
 export default class SupremePost extends React.Component {
   state = {
     partyOne: "",
-    partyTwo: "",
-    parties: "",
+    partyTwo: "", 
     ohioVolume: "",
     ohioReporter: "",
     ohioFirstPage: "",
@@ -21,9 +21,11 @@ export default class SupremePost extends React.Component {
     regionalReporter: "",
     regionalFirstPage: "",
     year: "",
+    pinpointNumber: "",
+    pinpointDisplay: "",
     webcite: "",
-    citation: "",
-    citationList: []
+    parties: "",
+    citation: ""
   };
   handlePartyOne = (e) => {
     this.setState({
@@ -37,7 +39,6 @@ export default class SupremePost extends React.Component {
   }
   handleCitation =() => {
     const partyOne = this.state.partyOne;
-    
     let specialTermsOne = partyOne
       .replace("also known as", "a.k.a.")
       .replace("Also Known As", "a.k.a.")
@@ -55,7 +56,6 @@ export default class SupremePost extends React.Component {
       .replace("Prosecuting Attorney", "Pros. Atty.")
       .replace("savings & loan", "S. & L.")
       .replace("Savings & Loan", "S. & L.")
-
     let splitPartyOne = specialTermsOne.trim().split(" ");
     for (let i = 0; i < splitPartyOne.length; i++) {
       for (let y = 0; y < term.length; y++) {
@@ -67,9 +67,8 @@ export default class SupremePost extends React.Component {
       }
     }
     let newPartyOne = splitPartyOne.join(" ");
-    
+  
     const partyTwo = this.state.partyTwo;
-
     let specialTermsTwo = partyTwo
       .replace("also known as", "a.k.a.")
       .replace("Also Known As", "a.k.a.")
@@ -87,7 +86,6 @@ export default class SupremePost extends React.Component {
       .replace("Prosecuting Attorney", "Pros. Atty.")
       .replace("savings & loan", "S. & L.")
       .replace("Savings & Loan", "S. & L.")
-
     let splitPartyTwo = specialTermsTwo.trim().split(" ");
     for (let i = 0; i < splitPartyTwo.length; i++) {
       for (let y = 0; y < term.length; y++) {
@@ -105,7 +103,7 @@ export default class SupremePost extends React.Component {
         parties: `${newPartyOne} v. ${newPartyTwo}`
       })
       this.setState({
-        citation: `, ${this.state.ohioVolume} ${this.state.ohioReporter} ${this.state.ohioFirstPage}, ${this.state.year}-Ohio-${this.state.webcite}, ${this.state.regionalVolume} ${this.state.regionalReporter} ${this.state.regionalFirstPage}`
+        citation: `, ${this.state.ohioVolume} ${this.state.ohioReporter} ${this.state.ohioFirstPage}, ${this.state.year}-Ohio-${this.state.webcite}, ${this.state.regionalVolume} ${this.state.regionalReporter} ${this.state.regionalFirstPage}${this.state.pinpointDisplay}`
       //i.e. Smith v. Smith, 234 Ohio St.3d, 2012-Ohio-1234, 45 N.E.3d 77
       })
     }
@@ -120,9 +118,9 @@ export default class SupremePost extends React.Component {
       ohioReporter: e.target.value
     })
   }
-  handleRegionalReporter = (e) => {
+  handleOhioFirstPage = (e) => {
     this.setState({
-      regionalReporter: e.target.value
+      ohioFirstPage: e.target.value
     })
   }
   handleRegionalVolume = (e) => {
@@ -130,9 +128,9 @@ export default class SupremePost extends React.Component {
       regionalVolume: e.target.value
     })
   }
-  handleOhioFirstPage = (e) => {
+  handleRegionalReporter = (e) => {
     this.setState({
-      ohioFirstPage: e.target.value
+      regionalReporter: e.target.value
     })
   }
   handleRegionalFirstPage = (e) => {
@@ -150,6 +148,22 @@ export default class SupremePost extends React.Component {
       year: e.target.value
     })
   }
+  handlePinpoint = (e) => {
+    this.setState({
+      pinpointNumber: e.target.value,
+      pinpointDisplay: `, ¶ ${e.target.value}`
+    })
+    if (e.target.value === "") {
+      this.setState({
+        pinpointDisplay: ""
+      })
+    }
+  }
+  handleWebcite = (e) => {
+    this.setState({
+      webcite: e.target.value
+    })
+  }
   handleRemoveCitation = () => {
     ohioReporter.value = "";
     regionalReporter.value = "";
@@ -162,17 +176,12 @@ export default class SupremePost extends React.Component {
       ohioFirstPage: "",
       regionalVolume: "",
       regionalFirstPage: "",
-      webcite: "",
-      year: ""
+      pinpointNumber: "",
+      pinpointDisplay: "",
+      year: "",
+      webcite: ""
     })
   }
-  handleSaveCitation = () => {
-    let citationName = this.state.parties + this.state.citation;
-    this.setState((prevState) => ({
-      citationList: prevState.citationList.concat(citationName)
-    }))
-  }
-
   startCopyCitation = (citationText) => {
     let copyArea = document.getElementById('fullCitation')
     copyArea.innerHTML = citationText
@@ -189,7 +198,8 @@ export default class SupremePost extends React.Component {
   render() {
     return (
       <div>
-        <h2>Ohio Supreme Court Post May 1, 2002</h2>
+        <h2>Ohio Supreme Court</h2>
+        <h3>Decided May 1, 2002 and After</h3>
         <form onSubmit={this.handleStartCitation}>
           <AddParties 
             handlePartyOne={this.handlePartyOne} 
@@ -221,6 +231,10 @@ export default class SupremePost extends React.Component {
             handleYear={this.handleYear}
             year={this.state.year}
           />
+          <AddPinpoint 
+            handlePinpoint={this.handlePinpoint}
+            pinpointNumber={this.state.pinpointNumber}
+          />
           <CiteCase
             handleCitation={this.handleCitation}
             parties={this.state.parties}
@@ -239,3 +253,10 @@ export default class SupremePost extends React.Component {
     );
   }
 }
+
+  // handleSaveCitation = () => {
+  //   let citationName = this.state.parties + this.state.citation;
+  //   this.setState((prevState) => ({
+  //     citationList: prevState.citationList.concat(citationName)
+  //   }))
+  // }
