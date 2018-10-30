@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddWestlawLexis = (props) => (
   <div>
-    <select required id="month" onChange={props.handleMonth}>
+    <select required id="month" className="select" onChange={props.handleMonth}>
       <option value="">Month</option>
       <option value="Jan">Jan.</option>
       <option value="Feb">Feb.</option>
@@ -18,7 +18,7 @@ const AddWestlawLexis = (props) => (
       <option value="December">Dec.</option>
     </select>
     <div>
-      <input value={props.day} type="number" id="day" placeholder="Day" onChange={props.handleDay}/>
+      <input value={props.day} className="text-input" type="number" id="day" placeholder="Day" onChange={props.handleDay}/>
     </div>
   </div>
 )

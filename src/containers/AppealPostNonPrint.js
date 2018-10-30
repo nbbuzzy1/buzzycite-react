@@ -172,7 +172,7 @@ export default class SupremePost extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="content-container">
         <h2>Ohio Court of Appeals</h2>
         <h3>May 1, 2002 and After</h3>
         <h4>Non-Print Published</h4>

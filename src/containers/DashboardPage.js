@@ -2,27 +2,36 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DashboardPage = () => (
-  <div>
-    <h1>Pick Court</h1>
-    <div>
-      <Link to="/SupremePost">Ohio Supreme Court Post May 1, 2002</Link>
-    </div>
-    <div>
-      <Link to="/SupremePre">Ohio Supreme Court Pre May 1, 2002</Link>
-    </div>
-    <div>
-      <Link to="/AppealPostPrint">Ohio Court of Appeals Post Print-Published May 1, 2002</Link>
-    </div>
-    <div>
-      <Link to="/AppealPostNonPrint">Ohio Court of Appeals Post Non-Print-Published May 1, 2002</Link>
-    </div>
-    <div>
-      <Link to="/AppealPrePrint">Ohio Court of Appeals Pre Print-Published May 1, 2002</Link>
-    </div>
-    <div>
-      <Link to="/AppealPreNonPrint">Ohio Court of Appeals Pre Non-Print-Published May 1, 2002</Link>
+  <div className="dashboard">
+    <div className="content-container">
+      <h1 className="dashboard__title">Pick Court</h1>
+      <Link className="dashboard__court" to="/SupremePost">
+        <div className="dashboard__court-title">Ohio Supreme Court</div> 
+        <div className="dashboard__court-date">May 1, 2002 and After</div>
+      </Link>
+      <Link className="dashboard__court" to="/SupremePre">
+        <div>Ohio Supreme Court</div> 
+        <div>Before May 1, 2012</div>
+      </Link>
+      <Link className="dashboard__court" to="/AppealPostPrint">
+        <div>Ohio Appeals Court (Print)</div>
+        <div>May 1, 2002 and After</div>
+      </Link>
+      <Link className="dashboard__court" to="/AppealPostNonPrint">
+        <div>Ohio Appeals Court (Non-Print)</div> 
+        <div>May 1, 2002 and After</div>
+      </Link>
+      <Link className="dashboard__court" to="/AppealPrePrint">
+        <div>Ohio Appeals Court (Print)</div>
+        <div>Before May 1, 2002</div>
+      </Link>
+      <Link className="dashboard__court" to="/AppealPreNonPrint">
+        <div>Ohio Appeals Court (Non-Print)</div>
+        <div>Before May 1, 2002</div>
+      </Link>
     </div>
   </div>
+
 );
 
 export default DashboardPage;

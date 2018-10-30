@@ -197,58 +197,60 @@ export default class SupremePost extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h2>Ohio Supreme Court</h2>
-        <h3>Decided May 1, 2002 and After</h3>
-        <form onSubmit={this.handleStartCitation}>
-          <AddParties 
-            handlePartyOne={this.handlePartyOne} 
-            partyOne={this.state.partyOne}
-            handlePartyTwo={this.handlePartyTwo} 
-            partyTwo={this.state.partyTwo}
-          />
-          <AddOhioVolume
-            handleOhioVolume={this.handleOhioVolume} 
-            ohioVolume={this.state.ohioVolume}
-            handleOhioReporter={this.handleOhioReporter} 
-            ohioReporter={this.state.ohioReporter}
-            handleOhioFirstPage={this.handleOhioFirstPage}
-            ohioFirstPage={this.state.ohioFirstPage}
-          />
-          <AddRegionalVolume
-            handleRegionalVolume={this.handleRegionalVolume} 
-            regionalVolume={this.state.regionalVolume}
-            handleRegionalReporter={this.handleRegionalReporter} 
-            regionalReporter={this.state.regionalReporter}
-            handleRegionalFirstPage={this.handleRegionalFirstPage}
-            regionalFirstPage={this.state.regionalFirstPage}
-          />
-          <AddWebcite
-            handleWebcite={this.handleWebcite}
-            webcite={this.state.webcite}
-          />
-          <AddYear
-            handleYear={this.handleYear}
-            year={this.state.year}
-          />
-          <AddPinpoint 
-            handlePinpoint={this.handlePinpoint}
-            pinpointNumber={this.state.pinpointNumber}
-          />
-          <CiteCase
-            handleCitation={this.handleCitation}
-            parties={this.state.parties}
+      <div className="content-container">
+        <div>
+          <h2>Ohio Supreme Court</h2>
+          <h3>Decided May 1, 2002 and After</h3>
+          <form onSubmit={this.handleStartCitation}>
+            <AddParties 
+              handlePartyOne={this.handlePartyOne} 
+              partyOne={this.state.partyOne}
+              handlePartyTwo={this.handlePartyTwo} 
+              partyTwo={this.state.partyTwo}
+            />
+            <AddOhioVolume
+              handleOhioVolume={this.handleOhioVolume} 
+              ohioVolume={this.state.ohioVolume}
+              handleOhioReporter={this.handleOhioReporter} 
+              ohioReporter={this.state.ohioReporter}
+              handleOhioFirstPage={this.handleOhioFirstPage}
+              ohioFirstPage={this.state.ohioFirstPage}
+            />
+            <AddRegionalVolume
+              handleRegionalVolume={this.handleRegionalVolume} 
+              regionalVolume={this.state.regionalVolume}
+              handleRegionalReporter={this.handleRegionalReporter} 
+              regionalReporter={this.state.regionalReporter}
+              handleRegionalFirstPage={this.handleRegionalFirstPage}
+              regionalFirstPage={this.state.regionalFirstPage}
+            />
+            <AddWebcite
+              handleWebcite={this.handleWebcite}
+              webcite={this.state.webcite}
+            />
+            <AddYear
+              handleYear={this.handleYear}
+              year={this.state.year}
+            />
+            <AddPinpoint 
+              handlePinpoint={this.handlePinpoint}
+              pinpointNumber={this.state.pinpointNumber}
+            />
+            <CiteCase
+              handleCitation={this.handleCitation}
+              parties={this.state.parties}
+              citation={this.state.citation}
+            />
+          </form>
+          <RemoveCitation
+            handleRemoveCitation={this.handleRemoveCitation}
             citation={this.state.citation}
           />
-        </form>
-        <RemoveCitation
-          handleRemoveCitation={this.handleRemoveCitation}
-          citation={this.state.citation}
-        />
-        <CopyCitation
-          handleCopyCitation={this.handleCopyCitation}
-          citation={this.state.citation}
-        />
+          <CopyCitation
+            handleCopyCitation={this.handleCopyCitation}
+            citation={this.state.citation}
+          />
+        </div> 
       </div>
     );
   }

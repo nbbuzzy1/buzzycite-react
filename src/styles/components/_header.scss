@@ -1,17 +1,15 @@
 .header {
-  background: $dark-blue;
-  color: yellow;
+  background: $dark-grey;
 }
 
 .header__content {
-  align-items: center;
   display: flex;
   justify-content: space-between;
   padding: $s-size 0;
 }
 
 .header__title {
-  color: white;
+  color: $gold;
   text-decoration: none;
   h1 {
     margin: 0;

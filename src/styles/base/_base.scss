@@ -6,10 +6,11 @@ html {
   font-size: 62.5%;
 }
 body {
-  color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: $m-size;
+  font-size: $font-size-medium;
   line-height: 1.6;
+  background: $grey;
+  color: $gold;
 }
 
 button {
@@ -20,18 +21,8 @@ button:disabled {
   cursor: default;
 }
 
-.is-active {
-  font-weight: bold;
-}
-
-img {
-  height: 200px;
-  width: 300px;
-  margin: $s-size;
-}
-
-h1 {
-  text-align: center;
+link {
+  text-decoration: none;
 }
 
 #fullCitation {
@@ -39,3 +30,4 @@ h1 {
   left: -10000px;
   top:-10000px
 }
+

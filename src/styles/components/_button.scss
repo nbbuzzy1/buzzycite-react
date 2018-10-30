@@ -2,12 +2,21 @@
   background: $blue;
   border: 0;
   color: white;
-  display: inline-block;
+  display: flex;
+  height: 5rem;
   font-size: $font-size-large;
   font-weight: 300;
+  justify-content: center;
   line-height: 1;
+  margin: 0 auto;
   padding: $s-size;
   text-decoration: none;
+  width: 20rem;
+}
+
+.button:hover {
+  color: $gold;
+  font-weight: bold;
 }
 
 .button--link {
