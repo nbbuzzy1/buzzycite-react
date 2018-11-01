@@ -9,6 +9,7 @@
   justify-content: center;
   line-height: 1;
   margin: 0 auto;
+  max-width: 100%;
   padding: $s-size;
   text-decoration: none;
   width: 20rem;
@@ -19,10 +20,26 @@
   font-weight: bold;
 }
 
-.button--link {
-  background: none;
+.button--remove {
+  margin: 0 $s-size;
 }
 
-.button--secondary {
-  background: #888888;
+.button--copy {
+  margin: 0 $s-size;
+}
+
+.button__layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto $s-size auto;
+}
+
+@media (max-width: 500px) {
+  .button {
+
+  }
+  .button--copy {
+    margin-bottom: $s-size;
+  }
 }

@@ -7,7 +7,8 @@ import AddPinpoint from '../components/AddPinpoint';
 import AddDistrict from '../components/AddDistrict';
 import AddCountyCase from '../components/AddCountyCase';
 import AddMonthDay from '../components/AddMonthDay';
-import CiteCase from '../components/CiteCase.js';
+import CiteCase from '../components/CiteCase';
+import Citation from '../components/Citation';
 import RemoveCitation from '../components/RemoveCitation';
 import CopyCitation from '../components/CopyCitation';
 
@@ -198,9 +199,11 @@ export default class SupremePost extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <h2>Ohio Court of Appeals</h2>
-        <h3>Before May 1, 2002</h3>
-        <h4>Non-Print Published</h4>
+        <div>
+          <h2>Ohio Court of Appeals</h2>
+          <h3>Before May 1, 2002</h3>
+          <h4>Non-Print Published</h4>
+        </div>
         <form onSubmit={this.handleStartCitation}>
           <AddParties 
             handlePartyOne={this.handlePartyOne} 
@@ -239,18 +242,22 @@ export default class SupremePost extends React.Component {
           />
           <CiteCase
             handleCitation={this.handleCitation}
-            parties={this.state.parties}
-            citation={this.state.citation}
           />
         </form>
-        <RemoveCitation
-          handleRemoveCitation={this.handleRemoveCitation}
+        <Citation
+          parties={this.state.parties}
           citation={this.state.citation}
         />
-        <CopyCitation
-          handleCopyCitation={this.handleCopyCitation}
-          citation={this.state.citation}
-        />
+        <div className="button__layout">
+          <CopyCitation
+            handleCopyCitation={this.handleCopyCitation}
+            citation={this.state.citation}
+          />
+          <RemoveCitation
+            handleRemoveCitation={this.handleRemoveCitation}
+            citation={this.state.citation}
+          />
+        </div>
       </div>
     );
   }

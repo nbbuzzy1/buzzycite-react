@@ -26,8 +26,12 @@ link {
 }
 
 #fullCitation {
-  position: fixed;
+  background: white;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 17px; //for 12 point font
   left: -10000px;
+  position: fixed;
   top:-10000px
 }
 
